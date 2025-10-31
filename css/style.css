@@ -1,0 +1,640 @@
+/* style.css - Barbosa Tech (VERSÃO FINAL CONSOLIDADA E CORRIGIDA) */
+
+/* ==================================== */
+/* 0. VARIÁVEIS E CONFIGURAÇÃO DE LAYOUT */
+/* ==================================== */
+
+:root {
+    /* Paleta de Cores Futurista */
+    --cor-fundo-principal: #0F0F1A; 
+    --cor-texto-claro: #EFEFEF; 
+    --cor-destaque-neon: #00FFFF; 
+    --cor-destaque-secundaria: #FF00FF; 
+    --cor-suave: #444455; 
+    --largura-sidebar: 200px; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Fonte Consolas para um visual "Tech", com fallback para monospace */
+    font-family: 'Poppins', sans-serif; 
+    
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-claro);
+    line-height: 1.6;
+    /* PROPRIEDADES DE PARALAXE (Mantenha se quiser um fundo fixo) */
+    background-image: url('/imagem/background-futuristic.jpg'); 
+    background-attachment: fixed; 
+    background-size: cover; 
+    background-position: center center;  
+    background-repeat: no-repeat; 
+}
+
+/* Overlay para manter o contraste do texto (Se usar paralaxe) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: -1; 
+}
+
+/* Estilo de links */
+a {
+    color: var(--cor-destaque-neon);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--cor-destaque-secundaria);
+}
+
+/* ACESSIBILIDADE: Foco visível para navegação por teclado */
+:focus {
+    outline: 2px solid var(--cor-destaque-secundaria); 
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+/* ==================================== */
+/* 1. LAYOUT PRINCIPAL (DESKTOP) - CORRIGIDO O ALINHAMENTO */
+/* ==================================== */
+
+main, header, footer {
+    /* CORREÇÃO AQUI: Apenas o deslocamento da barra lateral é aplicado */
+    margin-left: var(--largura-sidebar); 
+    margin-right: 0;
+    padding: 0; /* Remove padding externo, ele virá do .container */
+    width: auto; /* Permite que o elemento ocupe 100% da largura restante */
+}
+
+/* NOVO: Container centraliza e limita a largura do CONTEÚDO */
+.container {
+    max-width: 1000px; /* Largura máxima para legibilidade */
+    margin-left: auto; /* Centraliza o container horizontalmente */
+    margin-right: auto;
+    padding: 10px 20px; /* Adiciona padding interno */
+}
+
+
+/* ==================================== */
+/* 2. ESTILO DO NOME DO SITE (HEADER) */
+/* ==================================== */
+
+header {
+    padding: 30px 0;
+    border-bottom: 2px solid var(--cor-suave);
+    text-align: center; 
+    width: auto; /* Ocupa a largura restante */
+}
+
+.site-name {
+    font-size: 3.5em; 
+    margin: 0; 
+    display: inline-flex; 
+    align-items: baseline;
+}
+
+.barbosa {
+    color: var(--cor-texto-claro);
+    font-weight: 300; 
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+}
+
+.tech {
+    color: var(--cor-destaque-neon);
+    font-weight: 900; 
+    letter-spacing: 5px; 
+    background-color: transparent; 
+    padding: 0; 
+    border-radius: 0; 
+    
+    /* Efeito Neon */
+    text-shadow: 
+        0 0 1px #fff, 
+        0 0 8px var(--cor-destaque-neon), 
+        0 0 15px rgba(0, 255, 255, 0.4); 
+    padding-left: 5px; 
+}
+
+/* ==================================== */
+/* 3. NAVEGAÇÃO (NAV - BARRA LATERAL FIXA) */
+/* ==================================== */
+
+nav {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    height: 100vh; 
+    width: var(--largura-sidebar); 
+    padding: 20px 0;
+    background-color: #111122; 
+    border-right: 1px solid var(--cor-suave); 
+    z-index: 102; /* Ajustado para cobrir o hambúrguer se necessário */
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.5); 
+    transition: left 0.3s ease-in-out; 
+}
+
+nav ul {
+    list-style: none;
+    display: block; 
+    padding: 0;
+    margin-top: 150px; 
+}
+
+nav ul li a {
+    display: block; 
+    color: var(--cor-texto-claro);
+    padding: 12px 25px; 
+    text-transform: uppercase;
+    font-size: 0.95em;
+    letter-spacing: 1px;
+    border-left: 3px solid transparent; 
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--cor-destaque-neon);
+    background-color: rgba(0, 255, 255, 0.08); 
+    border-left-color: var(--cor-destaque-neon); 
+}
+
+nav ul li a.active {
+    color: var(--cor-destaque-neon);
+    font-weight: bold;
+    background-color: rgba(0, 255, 255, 0.15); 
+    border-left-color: var(--cor-destaque-neon); 
+    box-shadow: inset 5px 0 10px rgba(0, 255, 255, 0.2);
+}
+
+/* ==================================== */
+/* 4. CONTEÚDO (SECTIONS, CARDS E BOTÕES) */
+/* ==================================== */
+
+section {
+    padding: 40px 0; /* Removido o padding lateral que o container já faz */
+    margin-top: 30px;
+    border-top: 1px solid var(--cor-suave);
+    text-align: center; 
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--cor-destaque-neon);
+    margin: 10px auto 0 auto; 
+}
+
+/* Controle de Exibição de Páginas (usado pelo JS) */
+.page-content {
+    display: none;
+}
+
+.page-content.active-page {
+    display: block;
+}
+
+/* --- Botão Principal (.btn-primary) --- */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--cor-destaque-neon);
+    color: var(--cor-fundo-principal);
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px var(--cor-destaque-neon), 0 0 20px rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease-in-out;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-destaque-secundaria);
+    color: var(--cor-texto-claro);
+    box-shadow: 0 0 15px var(--cor-destaque-secundaria), 0 0 25px rgba(255, 0, 255, 0.7);
+    transform: translateY(-2px);
+}
+
+/* --- Estilos de Cards (Highlights e Produtos) --- */
+.card-grid {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #1a1a2e;
+    border: 1px solid var(--cor-suave);
+    padding: 25px;
+    border-radius: 8px;
+    flex-basis: 30%; 
+    min-width: 280px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    text-align: left;
+}
+
+.card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 20px rgba(0, 255, 255, 0.3); 
+    border-color: var(--cor-destaque-neon);
+}
+
+.card h3 {
+    color: var(--cor-destaque-neon);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    border: none; /* remove o ::after */
+}
+
+/* --- Lista de Serviços (UL/LI) --- */
+.service-list {
+    list-style: none; /* Remove marcadores padrão */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.service-item {
+    padding: 20px;
+    border: 1px solid var(--cor-suave);
+    border-left: 5px solid var(--cor-destaque-neon);
+    background-color: #1a1a2e;
+    transition: background-color 0.3s;
+}
+
+/* --- Formulário de Contato --- */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 30px auto; 
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    padding: 15px;
+    border: 1px solid var(--cor-suave);
+    background-color: #1a1a2e;
+    color: var(--cor-texto-claro);
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* ==================================== */
+/* 5. RODAPÉ (FOOTER) */
+/* ==================================== */
+
+footer {
+    width: auto; 
+    margin-left: var(--largura-sidebar); 
+    margin-right: 0;
+    padding: 0; /* Padding movido para o .container */
+    
+    margin-top: 50px;
+    font-size: 0.9em;
+    color: #AAAAAA;
+    
+    border-top: 5px solid #AAAAAA; 
+    background-color: #1a1a2e; 
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between; 
+    gap: 30px; 
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #AAAAAA;
+}
+
+.footer-col {
+    flex-basis: 30%; 
+}
+
+.footer-col h3 {
+    color: var(--cor-destaque-neon);
+    text-transform: uppercase;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2); 
+    padding-bottom: 5px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8em;
+}
+
+/* ==================================== */
+/* 6. HAMBÚRGUER (MOBILE) E ANIMAÇÕES */
+/* ==================================== */
+
+.hamburger-menu {
+    display: none; 
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 101; 
+    position: fixed; 
+    top: 30px;
+    right: 20px;
+}
+
+.hamburger-menu .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--cor-destaque-neon);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 5px var(--cor-destaque-neon);
+}
+
+/* Animação para o 'X' */
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0; 
+}
+
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); 
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg); 
+}
+
+/* Efeito de Neon Pulsante */
+@keyframes neon-pulse {
+    0% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--cor-destaque-neon), 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+    50% {
+        opacity: 0.8; 
+        text-shadow: 0 0 4px var(--cor-destaque-neon), 0 0 10px rgba(0, 255, 255, 0.2); 
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--cor-destaque-neon), 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+}
+
+.is-pulsing {
+    animation: neon-pulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Efeito de Cursor de Digitação */
+#typing-text {
+    border-right: 2px solid var(--cor-destaque-neon); 
+    white-space: nowrap; 
+    overflow: hidden; 
+    display: inline-block;
+}
+
+@keyframes blink-cursor {
+    from, to { border-color: transparent }
+    50% { border-color: var(--cor-destaque-neon); }
+}
+
+.cursor-blink {
+    animation: blink-cursor 0.75s step-end infinite;
+}
+
+
+/* ==================================== */
+/* 7. RESPONSIVIDADE (MEDIA QUERIES) */
+/* ==================================== */
+
+/* Ajustes para telas menores que 1024px (Tablets e alguns Laptops) */
+@media (max-width: 1024px) {
+    
+    :root {
+        --largura-sidebar: 180px; 
+    }
+}
+
+/* Ajustes Críticos para telas menores que 768px (Smartphones) */
+@media (max-width: 768px) {
+
+    /* --- LAYOUT PRINCIPAL: MODO MOBILE --- */
+
+    /* Garante que o conteúdo ocupe a largura total, removendo o empurrão da sidebar */
+    main, header, footer {
+        width: 100%; 
+        margin-left: 0; 
+    }
+    
+    /* 1. Botão do Hambúrguer (Aparece e fica Fixo) */
+    .hamburger-menu {
+        display: block; 
+    }
+
+    /* NOVO: Ajuste do tamanho da fonte para mobile para evitar quebra de layout */
+    .site-name {
+        font-size: 2.5em; /* Reduz o tamanho do título em mobile */
+    }
+
+    /* Otimização: Garantir que o padding não seja excessivo em telas muito estreitas */
+    .container {
+        padding: 10px 15px; 
+    }
+    
+    /* 2. Navegação (NAV) - Menu Deslizante */
+    nav {
+        width: 250px; 
+        left: -250px; 
+        z-index: 100;
+    } 
+    nav.open {
+        left: 0; 
+        box-shadow: 2px 0 15px rgba(0, 0, 0, 0.7); 
+    }
+    nav ul {
+        margin-top: 100px; 
+    }
+    
+    /* 3. Cards e Footer em Coluna */
+    .card-grid {
+        flex-direction: column;
+    }
+    .card {
+        flex-basis: 100%;
+        min-width: auto;
+    }
+    .footer-container {
+        flex-direction: column;
+    }
+}
+/* NOVO: Ajuste para telas muito pequenas (iPhone 5/SE, etc.) */
+@media (max-width: 480px) {
+    .site-name {
+        font-size: 2em;
+    }
+    header {
+        padding: 20px 0;
+    }
+    .hamburger-menu {
+        top: 20px;
+    }
+}
+
+
+/* ==================================== */
+/* 8. ÍCONES DE CONTATO FIXOS (WHATSAPP/INSTAGRAM) */
+/* ==================================== */
+
+.fixed-social-icons {
+    position: fixed;
+    bottom: 30px;
+    right: 30px; 
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 999; 
+}
+
+.fixed-social-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    /* Removido: color: var(--cor-texto-claro); */
+    /* Removido: font-size: 1.8em; */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* NOVO ESTILO: Garante que a imagem dentro do link preencha o espaço */
+.fixed-social-icons a img {
+    width: 60%; /* Ajuste o tamanho da imagem para caber dentro do círculo */
+    height: 60%;
+    object-fit: contain; /* Garante que a imagem inteira seja visível */
+}
+
+
+.fixed-social-icons a:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 4px 15px var(--cor-destaque-neon);
+}
+
+/* Estilos específicos de cor para as marcas (mantidos no <a>) */
+.whatsapp-icon {
+    background-color: #25D366; 
+}
+
+.instagram-icon {
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+}
+
+/* --- RESPONSIVIDADE PARA ICONES (Mantida) --- */
+@media (min-width: 769px) {
+    .fixed-social-icons {
+        right: 30px; 
+        left: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .fixed-social-icons {
+        right: 20px;
+        bottom: 20px;
+    }
+}
+
+/* ==================================== */
+/* 9. ESTILO DA PÁGINA MINHA HISTÓRIA */
+/* ==================================== */
+
+.history-flex {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
+    text-align: left;
+    margin-top: 30px;
+}
+
+.history-text {
+    flex-basis: 60%;
+    padding-right: 20px;
+}
+
+.history-text h3 {
+    color: var(--cor-destaque-secundaria); /* Usa a cor magenta */
+    font-size: 1.4em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.history-image-placeholder {
+    flex-basis: 40%;
+    height: 400px;
+    background-color: #1a1a2e;
+    border: 3px solid var(--cor-destaque-neon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.history-image{
+
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+/* Responsividade para a História */
+@media (max-width: 900px) {
+    .history-flex {
+        flex-direction: column;
+    }
+    .history-text, .history-image-placeholder {
+        flex-basis: 100%;
+        padding: 0;
+    }
+    .history-image-placeholder {
+        height: 300px;
+        margin-top: 20px;
+    }
+}
