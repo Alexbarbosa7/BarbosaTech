@@ -28,7 +28,7 @@ body {
     color: var(--cor-texto-claro);
     line-height: 1.6;
     /* PROPRIEDADES DE PARALAXE (Mantenha se quiser um fundo fixo) */
-    background-image: url('./imagem/background-futuristic.jpg'); 
+    background-image: url('../imagem/background-futuristic.jpg'); 
     background-attachment: fixed; 
     background-size: cover; 
     background-position: center center;  
